@@ -53,7 +53,13 @@ class WeatherTheme {
         fontWeight: FontWeight.w400,
         height: 1.1,
       ),
-      // Дописывайте сюда остальные текстовые стили приложения которые вам могут понадобиться
-    ),
+      headline5: TextStyle(
+      fontFamily: defaultFontFamily,
+      color: Colors.black,
+      fontSize: 24,
+      fontWeight: FontWeight.w700,
+      height: 1.1,
+      ),
+    )
   );
 }

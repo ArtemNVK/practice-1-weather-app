@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/navigation/app_router.dart';
 import 'package:weather_app/presentations/home/widgets/weather_days_list.dart';
 import 'package:weather_app/presentations/home/widgets/weather_today.dart';
 import 'package:weather_app/resources/images.dart';
+
+import '../search/search_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -27,7 +30,10 @@ class _HomePageState extends State<HomePage> {
         ),
         actions: [
               IconButton(
-                  onPressed: () => print('click'),
+                  onPressed: () => appRouter.goTo(
+                    context: context,
+                    route: const SearchPage(),
+                  ),
                   icon: Image.asset(Images.icSearch)
               )
             ],
