@@ -6,7 +6,10 @@ import 'package:weather_app/theme/weather_theme.dart';
 class WeatherToday extends StatefulWidget {
   const WeatherToday({
     Key? key,
+    @required this.locationName
   }) : super(key: key);
+
+  final locationName;
 
   @override
   State<WeatherToday> createState() => _WeatherTodayState();
@@ -40,7 +43,7 @@ class _WeatherTodayState extends State<WeatherToday> {
                           children: [
                             Image.asset(Images.icLocation),
                             Text(
-                                'Cupertino',
+                                widget.locationName,
                                 style: WeatherTheme.lightTheme.textTheme.headline3
                             )
                           ],

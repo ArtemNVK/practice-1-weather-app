@@ -16,6 +16,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final locationName = 'Cupertino';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +34,7 @@ class _HomePageState extends State<HomePage> {
               IconButton(
                   onPressed: () => appRouter.goTo(
                     context: context,
-                    route: const SearchPage(),
+                    route: SearchPage(locationName: locationName),
                   ),
                   icon: Image.asset(Images.icSearch)
               )
@@ -45,7 +47,7 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.only(top: 60),
                   child: Container(
                     height: 400,
-                    child: WeatherToday(),
+                    child: WeatherToday(locationName: locationName),
                   ),
                 ),
                 WeatherDaysList()
