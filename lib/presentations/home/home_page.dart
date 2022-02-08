@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/navigation/app_router.dart';
 import 'package:weather_app/presentations/home/widgets/weather_days_list.dart';
 import 'package:weather_app/presentations/home/widgets/weather_today.dart';
 import 'package:weather_app/resources/images.dart';
+
+import '../search/search_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -13,6 +16,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final locationName = 'Cupertino';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +32,10 @@ class _HomePageState extends State<HomePage> {
         ),
         actions: [
               IconButton(
-                  onPressed: () => print('click'),
+                  onPressed: () => appRouter.goTo(
+                    context: context,
+                    route: SearchPage(locationName: locationName),
+                  ),
                   icon: Image.asset(Images.icSearch)
               )
             ],
@@ -39,7 +47,7 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.only(top: 60),
                   child: Container(
                     height: 400,
-                    child: WeatherToday(),
+                    child: WeatherToday(locationName: locationName),
                   ),
                 ),
                 WeatherDaysList()
