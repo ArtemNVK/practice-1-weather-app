@@ -26,7 +26,7 @@ class SearchTextField extends StatelessWidget {
       onTap: onTap,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(vertical: 0),
-        hintText: 'Enter city name',
+        hintText: Strings.getWeatherInputPlaceholder,
         prefixIcon: Padding(
           padding: const EdgeInsets.all(10),
           child: Image.asset(

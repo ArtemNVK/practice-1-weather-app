@@ -5,10 +5,10 @@ import 'package:weather_app/theme/weather_theme.dart';
 class CurrentLocation extends StatelessWidget {
   const CurrentLocation({
     Key? key,
-    @required this.locationName
+    @required this.chosenCity
   }) : super(key: key);
 
-  final locationName;
+  final chosenCity;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class CurrentLocation extends StatelessWidget {
           Image.asset(Images.icLocation, color: Color(0xff010E82)),
           SizedBox(width: 14),
           Text(
-              this.locationName,
+              this.chosenCity,
               style: WeatherTheme.lightTheme.textTheme.headline6,
           ),
         ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/fixtures/city_items.dart';
 import 'package:weather_app/navigation/app_router.dart';
+import 'package:weather_app/presentations/home/home_page.dart';
 import 'package:weather_app/presentations/search/widgets/cities_list_item_widget.dart';
 import 'package:weather_app/presentations/search/widgets/current_location.dart';
 import 'package:weather_app/presentations/search/widgets/past_search_block.dart';
@@ -11,10 +12,10 @@ import 'package:weather_app/theme/weather_theme.dart';
 class SearchPage extends StatefulWidget {
   const SearchPage({
     Key? key,
-    @required this.locationName,
+    required this.chosenCity,
   }) : super(key: key);
 
-  final locationName;
+  final ValueNotifier<String> chosenCity;
 
   @override
   State<SearchPage> createState() => _SearchPageState();
@@ -23,7 +24,7 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   final _controller = TextEditingController();
   final _focusNode = FocusNode();
-  String? chosenCity;
+
   var _pastSearchCities = ['Moscow', 'New York City'];
 
   void onCloseTap() {
@@ -36,8 +37,9 @@ class _SearchPageState extends State<SearchPage> {
   void onCityItemTap(String city) {
     setState(() {
       _pastSearchCities.add(city);
-      chosenCity = city;
+      widget.chosenCity.value = city;
       _focusNode.unfocus();
+      appRouter.goTo(context: context, route: HomePage());
     });
   }
 
@@ -83,11 +85,11 @@ class _SearchPageState extends State<SearchPage> {
             ),
             SizedBox(height: 20),
             if (!_focusNode.hasFocus) ...[
-              CurrentLocation(locationName: widget.locationName),
+              CurrentLocation(chosenCity: widget.chosenCity.value),
               Divider(),
               PastSearchBlock(
                   pastSearchCities: this._pastSearchCities,
-                  onClearAllTap: onClearAllTap
+                  onClearAllTap: onClearAllTap,
               ),
             ] else ...[
               Column(

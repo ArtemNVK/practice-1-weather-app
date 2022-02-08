@@ -6,7 +6,7 @@ import 'package:weather_app/theme/weather_theme.dart';
 class WeatherToday extends StatefulWidget {
   const WeatherToday({
     Key? key,
-    @required this.locationName
+    required this.locationName
   }) : super(key: key);
 
   final locationName;
