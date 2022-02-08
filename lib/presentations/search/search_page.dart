@@ -24,13 +24,26 @@ class _SearchPageState extends State<SearchPage> {
   final _controller = TextEditingController();
   final _focusNode = FocusNode();
   String? chosenCity;
-  var pastSearchCities = ['Moscow', 'New York City'];
+  var _pastSearchCities = ['Moscow', 'New York City'];
+
+  void onCloseTap() {
+    setState(() {
+      _controller.clear();
+      _focusNode.unfocus();
+    });
+  }
 
   void onCityItemTap(String city) {
     setState(() {
-      pastSearchCities.add(city);
+      _pastSearchCities.add(city);
       chosenCity = city;
       _focusNode.unfocus();
+    });
+  }
+
+  void onClearAllTap() {
+    setState(() {
+      this._pastSearchCities.clear();
     });
   }
 
@@ -66,23 +79,20 @@ class _SearchPageState extends State<SearchPage> {
               controller: _controller,
               focusNode: _focusNode,
               onTap: () => setState(() {}),
-              onCloseTap: () => setState(() {
-                _controller.clear();
-                _focusNode.unfocus();
-              }),
+              onCloseTap: onCloseTap
             ),
             SizedBox(height: 20),
-            if (!_focusNode.hasFocus) ... [
+            if (!_focusNode.hasFocus) ...[
               CurrentLocation(locationName: widget.locationName),
               Divider(),
               PastSearchBlock(
-                  pastSearchCities: this.pastSearchCities,
-                  onClearAllTap: () {}
-              )
-            ] else ... [
+                  pastSearchCities: this._pastSearchCities,
+                  onClearAllTap: onClearAllTap
+              ),
+            ] else ...[
               Column(
                 children: [
-                  for (final city in testCities) ... [
+                  for (final city in testCities) ...[
                     CitiesListItemWidget(
                         item: city,
                         onTap: () => onCityItemTap(city.city),

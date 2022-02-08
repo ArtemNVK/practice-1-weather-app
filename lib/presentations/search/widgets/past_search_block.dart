@@ -22,6 +22,7 @@ class _PastSearchBlockState extends State<PastSearchBlock> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        SizedBox(height: 20),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -33,12 +34,13 @@ class _PastSearchBlockState extends State<PastSearchBlock> {
             LinkText(text: 'Clear All', onTap: widget.onClearAllTap)
         ],
         ),
+        SizedBox(height: 20),
         Column(
           children: [
             for (final city in widget.pastSearchCities) ...[
               PastSearchItemWidget(
                   city: city,
-                  onTap: () {},
+                  onTap: () => setState(() => widget.pastSearchCities.remove(city)),
               ),
               const SizedBox(height: 8),
             ],

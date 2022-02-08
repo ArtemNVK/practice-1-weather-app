@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/models/city_item.dart';
+import 'package:weather_app/theme/weather_theme.dart';
 
 class CitiesListItemWidget extends StatelessWidget {
   const CitiesListItemWidget({
@@ -15,12 +16,26 @@ class CitiesListItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: this.onTap,
-      child: Row(
-        children: [
-          Text(item.city),
-          CircleAvatar(),
-          Text(item.country)
-        ],
+      child: Padding(
+        padding: const EdgeInsets.only(top: 17.0, bottom: 17.0),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Text(item.city, style: WeatherTheme.lightTheme.textTheme.headline4),
+                Padding(
+                  padding: const EdgeInsets.only(right: 8.0, left: 8.0),
+                  child: CircleAvatar(
+                    radius: 4.0,
+                    backgroundColor: Color(0xffC4C4C4),
+                  ),
+                ),
+                Text(item.country, style: WeatherTheme.lightTheme.textTheme.headline4),
+              ],
+            ),
+            Divider()
+          ],
+        ),
       ),
     );
   }
