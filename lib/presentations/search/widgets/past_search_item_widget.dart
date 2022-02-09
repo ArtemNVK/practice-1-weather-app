@@ -14,23 +14,26 @@ class PastSearchItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Text(
-            this.city,
-            style: WeatherTheme.lightTheme.textTheme.headline4
-        ),
-        GestureDetector(
-          onTap: onTap,
-          child: Image.asset(
-              Images.icClose,
-              height: 12,
-              width: 12,
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+              this.city,
+              style: WeatherTheme.lightTheme.textTheme.headline4
           ),
-        ),
-      ],
+          GestureDetector(
+            onTap: onTap,
+            child: Image.asset(
+                Images.icClose,
+                height: 12,
+                width: 12,
+            ),
+          ),
+        ],
+      ),
     );
   }
   }

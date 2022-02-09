@@ -20,33 +20,34 @@ class PastSearchBlock extends StatefulWidget {
 class _PastSearchBlockState extends State<PastSearchBlock> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(height: 20),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-                'Past Search',
-                style: WeatherTheme.lightTheme.textTheme.headline2
-            ),
-            LinkText(text: 'Clear All', onTap: widget.onClearAllTap)
-        ],
-        ),
-        SizedBox(height: 20),
-        Column(
-          children: [
-            for (final city in widget.pastSearchCities) ...[
-              PastSearchItemWidget(
-                  city: city,
-                  onTap: () => setState(() => widget.pastSearchCities.remove(city)),
+    return Expanded(
+        child: Column(
+            children: [
+              SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                      'Past Search',
+                      style: WeatherTheme.lightTheme.textTheme.headline2
+                  ),
+                  LinkText(text: 'Clear All', onTap: widget.onClearAllTap)
+                ],
               ),
-              const SizedBox(height: 8),
-            ],
-        ],
+              SizedBox(height: 20),
+              Expanded(
+                child: ListView.separated(
+                    itemBuilder: (_, i) => PastSearchItemWidget(
+                        city: widget.pastSearchCities[i],
+                        onTap: () => setState(() => widget.pastSearchCities.remove(widget.pastSearchCities[i]))
+                    ),
+                    separatorBuilder: (_, i) => const Divider(height: 1, color: Colors.grey),
+                    itemCount: widget.pastSearchCities.length
+                ),
+              ),
+            ]
         )
-      ]
     );
   }
 }

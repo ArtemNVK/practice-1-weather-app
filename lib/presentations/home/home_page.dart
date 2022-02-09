@@ -17,6 +17,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final _chosenCity = ValueNotifier('Cupertino');
+  List<String> pastSearchCities = [];
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,11 @@ class _HomePageState extends State<HomePage> {
               IconButton(
                   onPressed: () => appRouter.goTo(
                     context: context,
-                    route: SearchPage(chosenCity: _chosenCity),
+                    route: SearchPage(
+                        chosenCity: _chosenCity,
+                        onCityChosen: () => setState(() {}),
+                        pastSearchCities: pastSearchCities
+                    ),
                   ),
                   icon: Image.asset(Images.icSearch)
               )

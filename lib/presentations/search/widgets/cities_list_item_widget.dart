@@ -33,7 +33,6 @@ class CitiesListItemWidget extends StatelessWidget {
                 Text(item.country, style: WeatherTheme.lightTheme.textTheme.headline4),
               ],
             ),
-            Divider()
           ],
         ),
       ),
