@@ -26,16 +26,19 @@ class _WeatherDaysListState extends State<WeatherDaysList> {
                     icon: Images.ic01d,
                     degrees: '10',
                   ),
+                  Divider(),
                   WeatherListItem(
                     dayName: 'Tuesday',
                     icon: Images.ic01d,
                     degrees: '15',
                   ),
+                  Divider(),
                   WeatherListItem(
                     dayName: 'Wednesday',
                     icon: Images.ic02d,
                     degrees: '14',
                   ),
+                  Divider(),
                   WeatherListItem(
                     dayName: 'Thursday',
                     icon: Images.ic09d,
