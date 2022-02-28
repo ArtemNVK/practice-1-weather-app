@@ -6,7 +6,12 @@ import 'package:weather_app/theme/weather_theme.dart';
 class WeatherToday extends StatefulWidget {
   const WeatherToday({
     Key? key,
+    required this.locationName,
+    required this.animation
   }) : super(key: key);
+
+  final locationName;
+  final Animation<double> animation;
 
   @override
   State<WeatherToday> createState() => _WeatherTodayState();
@@ -18,18 +23,34 @@ class _WeatherTodayState extends State<WeatherToday> {
     return Scaffold(
         body: Stack(
           children: [
-            Container(
-                transform: Matrix4.translationValues(-215, 0, 0),
-                child: ClipPath(
-                  clipper: Clipper(),
-                  child: Container(
-                      alignment: Alignment.center,
-                      margin: const EdgeInsets.only(right: 0.0),
-                      padding: const EdgeInsets.all(0.0),
-                      child: Image.asset(Images.ic01d)
+            AnimatedBuilder(
+              animation: widget.animation,
+              builder: (context, child) => Container(
+                padding: EdgeInsets.only(top: widget.animation.value),
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Theme.of(context).shadowColor,
+                      spreadRadius: 15,
+                      blurRadius: 100,
+                      offset: const Offset(0, 50), // changes position of shadow
+                    ),
+                  ],
+                ),
+                child: ClipRect(
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    widthFactor: 0.5,
+                    heightFactor: 1.0,
+                    child: Image.asset(
+                      Images.ic01d,
+                      width: 350,
+                      height: 350,
+                    ),
                   ),
                 ),
               ),
+            ),
               Container(
                 alignment: Alignment.center,
                 transform: Matrix4.translationValues(220, 0, 0),
@@ -40,7 +61,7 @@ class _WeatherTodayState extends State<WeatherToday> {
                           children: [
                             Image.asset(Images.icLocation),
                             Text(
-                                'Cupertino',
+                                widget.locationName,
                                 style: WeatherTheme.lightTheme.textTheme.headline3
                             )
                           ],

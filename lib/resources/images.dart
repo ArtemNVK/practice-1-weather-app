@@ -3,10 +3,11 @@ class Images {
   static String svgProject = 'assets/images/svg';
   static String pngProject = 'assets/images/png';
 
-  //svg
+  //icons
   static String icSearch = '$pngProject/ic_search.png';
   static String icLocation = '$pngProject/ic_location.png';
   static String icGeoMark = '$pngProject/ic_geo_mark.png';
+  static String icClose = '$pngProject/ic_close.png';
 
   //weather images
   static String ic01d = '$pngProject/01d.png';
