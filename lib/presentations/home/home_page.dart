@@ -15,7 +15,8 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
   final _chosenCity = ValueNotifier('Cupertino');
   List<String> pastSearchCities = [];
 
@@ -58,46 +59,42 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: Builder(
-          builder: (BuildContext context) {
-            return IconButton(
-                onPressed: () => print('click'),
-                icon: Image.asset(Images.icGeoMark)
-            );
-          },
-        ),
-        actions: [
-              IconButton(
-                  onPressed: () => appRouter.goTo(
-                    context: context,
-                    route: SearchPage(
-                        chosenCity: _chosenCity,
-                        onCityChosen: () => setState(() {}),
-                        pastSearchCities: pastSearchCities
+        appBar: AppBar(
+          leading: Builder(
+            builder: (BuildContext context) {
+              return IconButton(
+                  onPressed: () => print('click'),
+                  icon: Image.asset(Images.icGeoMark));
+            },
+          ),
+          actions: [
+            IconButton(
+                onPressed: () => appRouter.goTo(
+                      context: context,
+                      route: SearchPage(
+                          chosenCity: _chosenCity,
+                          onCityChosen: () => setState(() {}),
+                          pastSearchCities: pastSearchCities),
                     ),
-                  ),
-                  icon: Image.asset(Images.icSearch)
-              )
-            ],
-      ),
-      body: SafeArea(
-        child: Column(
-              children: [
-                Padding(
+                icon: Image.asset(Images.icSearch))
+          ],
+        ),
+        body: SafeArea(
+          child: Column(
+            children: [
+              Expanded(
+                child: Padding(
                   padding: const EdgeInsets.only(top: 60),
                   child: Container(
                     height: 400,
                     child: WeatherToday(
-                      locationName: _chosenCity.value,
-                      animation: _animation
-                    ),
+                        locationName: _chosenCity.value, animation: _animation),
                   ),
                 ),
-                WeatherDaysList()
-              ],
-            ),
-      )
-    );
+              ),
+              const WeatherDaysList()
+            ],
+          ),
+        ));
   }
 }
