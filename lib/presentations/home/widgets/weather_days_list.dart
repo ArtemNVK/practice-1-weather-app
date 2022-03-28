@@ -17,36 +17,36 @@ class _WeatherDaysListState extends State<WeatherDaysList> {
     return Flexible(
       fit: FlexFit.tight,
       child: Scaffold(
-          body: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Column(
-                children: [
-                  WeatherListItem(
-                    dayName: 'Monday',
-                    icon: Images.ic01d,
-                    degrees: '10',
-                  ),
-                  Divider(),
-                  WeatherListItem(
-                    dayName: 'Tuesday',
-                    icon: Images.ic01d,
-                    degrees: '15',
-                  ),
-                  Divider(),
-                  WeatherListItem(
-                    dayName: 'Wednesday',
-                    icon: Images.ic02d,
-                    degrees: '14',
-                  ),
-                  Divider(),
-                  WeatherListItem(
-                    dayName: 'Thursday',
-                    icon: Images.ic09d,
-                    degrees: '14',
-                  ),
-                ],
+        body: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            children: [
+              WeatherListItem(
+                dayName: 'Monday',
+                icon: Images.ic01d,
+                degrees: '10',
               ),
+              const Divider(),
+              WeatherListItem(
+                dayName: 'Tuesday',
+                icon: Images.ic01d,
+                degrees: '15',
+              ),
+              const Divider(),
+              WeatherListItem(
+                dayName: 'Wednesday',
+                icon: Images.ic02d,
+                degrees: '14',
+              ),
+              const Divider(),
+              WeatherListItem(
+                dayName: 'Thursday',
+                icon: Images.ic09d,
+                degrees: '14',
+              ),
+            ],
           ),
+        ),
       ),
     );
   }

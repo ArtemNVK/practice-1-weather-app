@@ -1,9 +1,11 @@
+import 'package:dash_kit_core/dash_kit_core.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_app/navigation/app_router.dart';
 import 'package:weather_app/presentations/home/widgets/weather_days_list.dart';
 import 'package:weather_app/presentations/home/widgets/weather_today.dart';
 import 'package:weather_app/resources/images.dart';
 
+import '../../features/geolocation/actions/get_geolocation_action.dart';
 import '../search/search_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -23,6 +25,35 @@ class _HomePageState extends State<HomePage>
   late AnimationController _animationController;
   late Animation<double> _curve;
   late Animation<double> _animation;
+
+  void showSimpleDialog(BuildContext context, String title, String text) {
+    AlertDialog alert = AlertDialog(
+      title: Text(title),
+      content: Text(text),
+    );
+
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        });
+  }
+
+  void _getGeolocation() {
+    context.dispatch(GetGeolocationAction()).then((_) {
+      showSimpleDialog(
+        context,
+        'Success!',
+        'Geolocation received',
+      );
+    }).catchError((error) {
+      showSimpleDialog(
+        context,
+        'Oops!',
+        error.toString(),
+      );
+    });
+  }
 
   @override
   void initState() {
@@ -63,7 +94,7 @@ class _HomePageState extends State<HomePage>
           leading: Builder(
             builder: (BuildContext context) {
               return IconButton(
-                  onPressed: () => print('click'),
+                  onPressed: _getGeolocation,
                   icon: Image.asset(Images.icGeoMark));
             },
           ),
